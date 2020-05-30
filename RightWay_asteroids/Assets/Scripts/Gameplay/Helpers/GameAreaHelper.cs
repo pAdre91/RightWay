@@ -16,13 +16,7 @@ namespace Gameplay.Helpers
 
 		public static bool IsInGameplayArea(Transform objectTransform, Bounds objectBounds)
 		{
-			var camHalfHeight = _camera.orthographicSize;
-			var camHalfWidth = camHalfHeight * _camera.aspect;
-			var camPos = _camera.transform.position;
-			var topBound = camPos.y + camHalfHeight;
-			var bottomBound = camPos.y - camHalfHeight;
-			var leftBound = camPos.x - camHalfWidth;
-			var rightBound = camPos.x + camHalfWidth;
+			GetCameraBounds(out float topBound, out float bottomBound, out float leftBound, out float rightBound);
 
 			var objectPos = objectTransform.position;
 
@@ -34,13 +28,7 @@ namespace Gameplay.Helpers
 
 		public static bool IsAllObjectInGameplayArea(Transform objectTransform, Bounds objectBounds)
 		{
-			var camHalfHeight = _camera.orthographicSize;
-			var camHalfWidth = camHalfHeight * _camera.aspect;
-			var camPos = _camera.transform.position;
-			var topBound = camPos.y + camHalfHeight;
-			var bottomBound = camPos.y - camHalfHeight;
-			var leftBound = camPos.x - camHalfWidth;
-			var rightBound = camPos.x + camHalfWidth;
+			GetCameraBounds(out float topBound, out float bottomBound, out float leftBound, out float rightBound);
 
 			var objectPos = objectTransform.position;
 
@@ -50,5 +38,16 @@ namespace Gameplay.Helpers
 				&& (objectPos.y > bottomBound + objectBounds.extents.y);
 		}
 
+		private static void GetCameraBounds(out float top, out float bottom, out float left, out float right)
+		{
+			var camHalfHeight = _camera.orthographicSize;
+			var camHalfWidth = camHalfHeight * _camera.aspect;
+			var camPos = _camera.transform.position;
+
+			top = camPos.y + camHalfHeight;
+			bottom = camPos.y - camHalfHeight;
+			left = camPos.x - camHalfWidth;
+			right = camPos.x + camHalfWidth;
+		}
 	}
 }
