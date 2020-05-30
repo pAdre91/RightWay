@@ -42,6 +42,7 @@ namespace Gameplay.Weapons.Projectiles
 				&& damagableObject.BattleIdentity != BattleIdentity)
 			{
 				damagableObject.ApplyDamage(this);
+				Destroy(gameObject);
 			}
 		}
 
