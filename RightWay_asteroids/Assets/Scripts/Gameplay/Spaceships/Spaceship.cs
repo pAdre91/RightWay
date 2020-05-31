@@ -25,12 +25,7 @@ namespace Gameplay.Spaceships
 		private UnitBattleIdentity _battleIdentity;
 
 		[SerializeField]
-		private ShipData _shipData;
-
-		[SerializeField]
 		protected float _defaultHealth;
-
-		protected ShipData ShipData => _shipData;
 
 		public MovementSystem MovementSystem => _movementSystem;
 		public WeaponSystem WeaponSystem => _weaponSystem;
@@ -41,28 +36,11 @@ namespace Gameplay.Spaceships
 		{
 			_shipController.Init(this);
 			_weaponSystem.Init(_battleIdentity);
-			_shipData.Health = _defaultHealth;
 		}
 
-		public void ApplyDamage(IDamageDealer damageDealer)
-		{
-			_shipData.Health -= damageDealer.Damage;
-
-			if (IsShipDead())
-				DestroyShip();
-		}
-
-		protected bool IsShipDead()
-		{
-			if (_shipData.Health > 0)
-				return false;
-			return true;
-		}
-
-		protected void DestroyShip()
+		virtual public void ApplyDamage(IDamageDealer damageDealer)
 		{
 			Destroy(gameObject);
 		}
-
 	}
 }
