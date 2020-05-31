@@ -67,6 +67,9 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		private void DestroyShip()
 		{
 			UnSubscribe();
+			Observer.Instance().PlayerDeadWithScore.Invoke(_playerData.Score);
+			Observer.Instance().PlayerDead.Invoke();
+
 			Destroy(gameObject);
 		}
 
