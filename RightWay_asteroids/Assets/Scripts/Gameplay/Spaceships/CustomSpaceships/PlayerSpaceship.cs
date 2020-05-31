@@ -12,7 +12,6 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		private new void Start()
 		{
 			base.Start();
-			ShipData.Health = _defaultHealth;
 			DisplayHealth();
 		}
 

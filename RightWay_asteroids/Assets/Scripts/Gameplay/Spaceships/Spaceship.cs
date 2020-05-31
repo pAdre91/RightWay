@@ -38,6 +38,7 @@ namespace Gameplay.Spaceships
 		{
 			_shipController.Init(this);
 			_weaponSystem.Init(_battleIdentity);
+			_shipData.Health = _defaultHealth;
 		}
 
 		public void ApplyDamage(IDamageDealer damageDealer)
