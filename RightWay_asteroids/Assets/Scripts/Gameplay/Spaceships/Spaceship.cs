@@ -34,7 +34,7 @@ namespace Gameplay.Spaceships
 
 		public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
-		private void Start()
+		protected void Start()
 		{
 			_shipController.Init(this);
 			_weaponSystem.Init(_battleIdentity);
