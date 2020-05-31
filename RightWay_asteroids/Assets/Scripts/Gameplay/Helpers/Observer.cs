@@ -18,6 +18,8 @@ namespace Gameplay.Helpers
 		}
 
 		public Event<float> EnemyDown;
+		public Event<float> PlayerDeadWithScore;
+		public UnityEvent PlayerDead;
 
 		Observer()
 		{
@@ -27,6 +29,8 @@ namespace Gameplay.Helpers
 		public void InitEvents()
 		{
 			EnemyDown = new Event<float>();
+			PlayerDeadWithScore = new Event<float>();
+			PlayerDead = new UnityEvent();
 		}
 	}
 }
