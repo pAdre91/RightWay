@@ -42,6 +42,21 @@ namespace Gameplay.Spaceships
 
 		public void ApplyDamage(IDamageDealer damageDealer)
 		{
+			_shipData.Health -= damageDealer.Damage;
+
+			if (IsShipDead())
+				DestroyShip();
+		}
+
+		protected bool IsShipDead()
+		{
+			if (_shipData.Health > 0)
+				return false;
+			return true;
+		}
+
+		protected void DestroyShip()
+		{
 			Destroy(gameObject);
 		}
 
