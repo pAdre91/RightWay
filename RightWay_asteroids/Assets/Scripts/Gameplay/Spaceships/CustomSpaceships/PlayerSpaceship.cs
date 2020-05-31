@@ -1,4 +1,6 @@
-﻿using Gameplay.GUI;
+﻿#pragma warning disable CS0649
+
+using Gameplay.GUI;
 using Gameplay.Weapons;
 using UnityEngine;
 

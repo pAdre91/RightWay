@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS0649
+
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;

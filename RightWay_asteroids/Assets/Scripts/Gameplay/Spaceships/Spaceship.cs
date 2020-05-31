@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable CS0649
+
+
+using System;
 using Gameplay.ShipControllers;
 using Gameplay.ShipSystems;
 using Gameplay.Weapons;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS0649
+
+using System;
 using Gameplay.Helpers;
 using UnityEngine;
 

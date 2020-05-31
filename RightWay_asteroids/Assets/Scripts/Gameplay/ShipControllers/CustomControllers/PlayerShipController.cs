@@ -1,4 +1,6 @@
-﻿using Gameplay.ShipSystems;
+﻿#pragma warning disable CS0649
+
+using Gameplay.ShipSystems;
 using Gameplay.Helpers;
 using UnityEngine;
 
