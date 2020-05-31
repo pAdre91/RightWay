@@ -2,6 +2,7 @@
 using Gameplay.ShipControllers;
 using Gameplay.ShipSystems;
 using Gameplay.Weapons;
+using Gameplay.ShipsData;
 using UnityEngine;
 
 namespace Gameplay.Spaceships
@@ -20,6 +21,13 @@ namespace Gameplay.Spaceships
 		[SerializeField]
 		private UnitBattleIdentity _battleIdentity;
 
+		[SerializeField]
+		private ShipData _shipData;
+
+		[SerializeField]
+		protected float _defaultHealth;
+
+		protected ShipData ShipData => _shipData;
 
 		public MovementSystem MovementSystem => _movementSystem;
 		public WeaponSystem WeaponSystem => _weaponSystem;
