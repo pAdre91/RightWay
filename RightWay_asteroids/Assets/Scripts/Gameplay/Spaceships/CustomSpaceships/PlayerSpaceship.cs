@@ -75,12 +75,12 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void Subscribe()
 		{
-			Observer.Instance().EnemyDown.AddListener(RefreshScore);
+			Observer.Instance().DownEnemyWithReward.AddListener(RefreshScore);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().EnemyDown.RemoveListener(RefreshScore);
+			Observer.Instance().DownEnemyWithReward.RemoveListener(RefreshScore);
 		}
 	}
 }
