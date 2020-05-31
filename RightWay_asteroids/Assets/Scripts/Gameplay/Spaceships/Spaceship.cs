@@ -2,6 +2,7 @@
 using Gameplay.ShipControllers;
 using Gameplay.ShipSystems;
 using Gameplay.Weapons;
+using Gameplay.ShipsData;
 using UnityEngine;
 
 namespace Gameplay.Spaceships
@@ -20,19 +21,42 @@ namespace Gameplay.Spaceships
 		[SerializeField]
 		private UnitBattleIdentity _battleIdentity;
 
+		[SerializeField]
+		private ShipData _shipData;
+
+		[SerializeField]
+		protected float _defaultHealth;
+
+		protected ShipData ShipData => _shipData;
 
 		public MovementSystem MovementSystem => _movementSystem;
 		public WeaponSystem WeaponSystem => _weaponSystem;
 
 		public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
-		private void Start()
+		protected void Start()
 		{
 			_shipController.Init(this);
 			_weaponSystem.Init(_battleIdentity);
+			_shipData.Health = _defaultHealth;
 		}
 
 		public void ApplyDamage(IDamageDealer damageDealer)
+		{
+			_shipData.Health -= damageDealer.Damage;
+
+			if (IsShipDead())
+				DestroyShip();
+		}
+
+		protected bool IsShipDead()
+		{
+			if (_shipData.Health > 0)
+				return false;
+			return true;
+		}
+
+		protected void DestroyShip()
 		{
 			Destroy(gameObject);
 		}
