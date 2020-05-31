@@ -19,12 +19,8 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		public new void ApplyDamage(IDamageDealer damageDealer)
 		{
-			ShipData.Health -= damageDealer.Damage;
-
+			base.ApplyDamage(damageDealer);
 			DisplayHealth();
-
-			if (IsShipDead())
-				DestroyShip();
 		}
 
 		private void DisplayHealth()

@@ -17,7 +17,7 @@ namespace Gameplay.ShipControllers.CustomControllers
 
 			movementSystem.LateralMovement(Input.GetAxis("Horizontal") * Time.deltaTime);
 
-			if (!IsPlayerPositionInArea())
+			if (!GameAreaHelper.IsAllObjectInGameplayArea(transform, objectCollider.bounds))
 				gameObject.transform.position = oldPosition;
 		}
 
@@ -27,13 +27,6 @@ namespace Gameplay.ShipControllers.CustomControllers
 			{
 				fireSystem.TriggerFire();
 			}
-		}
-
-		private bool IsPlayerPositionInArea()
-		{
-			if (GameAreaHelper.IsAllObjectInGameplayArea(transform, objectCollider.bounds))
-				return true;
-			return false;
 		}
 	}
 }
