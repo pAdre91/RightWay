@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 6910651213156479312}
   - component: {fileID: 2540544495500081184}
   - component: {fileID: 642069735}
-  - component: {fileID: 642069736}
   - component: {fileID: 642069740}
+  - component: {fileID: 563119457}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Untagged
@@ -210,18 +210,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &642069736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6910651213156479279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285e39e4a8850b74a87b36512c91437e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &642069740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,9 +226,22 @@ MonoBehaviour:
   _movementSystem: {fileID: 6910651213156479314}
   _weaponSystem: {fileID: 6910651213156479312}
   _battleIdentity: 1
-  _shipData: {fileID: 642069736}
   _defaultHealth: 300
+  _playerData: {fileID: 563119457}
   _healthViewer: {fileID: 0}
+  _scoreViewer: {fileID: 0}
+--- !u!114 &563119457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910651213156479279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4476d32fac21aa2418d1429f5ec7b056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6910651214060967066
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,9 @@
 ﻿#pragma warning disable CS0649
 
 using Gameplay.GUI;
+using Gameplay.ShipsData.CustomData;
 using Gameplay.Weapons;
+using Gameplay.Helpers;
 using UnityEngine;
 
 namespace Gameplay.Spaceships.CustomSpaceships
@@ -9,23 +11,73 @@ namespace Gameplay.Spaceships.CustomSpaceships
 	public class PlayerSpaceship : Spaceship, IDamagable
 	{
 		[SerializeField]
+		private PlayerData _playerData;
+
+		[SerializeField]
 		private TextInfoViewer _healthViewer;
+
+		[SerializeField]
+		private TextInfoViewer _scoreViewer;
+
+		private const float _defaultScore = 0;
 
 		private new void Start()
 		{
 			base.Start();
-			DisplayHealth();
+			Init();
 		}
 
-		public new void ApplyDamage(IDamageDealer damageDealer)
+		private void Init()
 		{
-			base.ApplyDamage(damageDealer);
+			_playerData.Health = _defaultHealth;
+			DisplayHealth();
+			RefreshScore(_defaultScore);
+
+			Subscribe();
+		}
+
+		public override void ApplyDamage(IDamageDealer damageDealer)
+		{
+			_playerData.Health -= damageDealer.Damage;
+
+			if (IsShipDead())
+				DestroyShip();
+
 			DisplayHealth();
 		}
 
 		private void DisplayHealth()
 		{
-			_healthViewer.Display(ShipData.Health.ToString());
+			_healthViewer.Display(_playerData.Health.ToString());
+		}
+
+		private void RefreshScore(float additionalPoints)
+		{
+			_playerData.Score += additionalPoints;
+			_scoreViewer.Display(_playerData.Score.ToString());
+		}
+
+		private bool IsShipDead()
+		{
+			if (_playerData.Health > 0)
+				return false;
+			return true;
+		}
+
+		private void DestroyShip()
+		{
+			UnSubscribe();
+			Destroy(gameObject);
+		}
+
+		private void Subscribe()
+		{
+			Observer.Instance().EnemyDown.AddListener(RefreshScore);
+		}
+
+		private void UnSubscribe()
+		{
+			Observer.Instance().EnemyDown.RemoveListener(RefreshScore);
 		}
 	}
 }
