@@ -1,7 +1,10 @@
 ﻿#pragma warning disable CS0649
 
 using Gameplay.Helpers;
+using Gameplay.Helpers.Pool;
+using Gameplay.Storage;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,12 +12,8 @@ namespace Gameplay.Spawners
 {
 	public class Spawner : MonoBehaviour
 	{
-
 		[SerializeField]
-		private GameObject _object;
-
-		[SerializeField]
-		private Transform _parent;
+		private List<GameObject> _spawnedObjects;
 
 		[SerializeField]
 		private Vector2 _spawnPeriodRange;
@@ -51,11 +50,23 @@ namespace Gameplay.Spawners
 
 		private IEnumerator Spawn()
 		{
+			System.Random randomizer = new System.Random();
+			int randomObject;
+			PooledObject pooledObject;
+			GameObject newEnemy;
+
 			yield return new WaitForSeconds(Random.Range(_spawnDelayRange.x, _spawnDelayRange.y));
 
 			while (true)
 			{
-				Instantiate(_object, transform.position, transform.rotation, _parent);
+				randomObject = randomizer.Next(_spawnedObjects.Count);
+				pooledObject = _spawnedObjects[randomObject].GetComponent<PooledObject>();
+				newEnemy = ObjectsStorage.Instance.GetObject(pooledObject.Type);
+
+				newEnemy.SetActive(true);
+				newEnemy.transform.position = transform.position;
+				newEnemy.transform.rotation = transform.rotation;
+
 				yield return new WaitForSeconds(Random.Range(_spawnPeriodRange.x, _spawnPeriodRange.y));
 			}
 		}

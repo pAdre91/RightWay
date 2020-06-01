@@ -43,7 +43,7 @@ public class EnemyShipController : ShipController
 
 	private void DestroyYourself()
 	{
-		Destroy(gameObject);
+		Observer.Instance().ObectOutdated.Invoke(gameObject);
 	}
 
 	private void Subscribe()

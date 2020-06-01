@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3274570344616576305}
   - component: {fileID: 4134558967772539352}
   - component: {fileID: 2535365724180702209}
+  - component: {fileID: -9195528121351227864}
   m_Layer: 0
   m_Name: LaserBeam
   m_TagString: Untagged
@@ -62,6 +63,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +75,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -135,3 +138,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _representation: {fileID: 3274570344616576305}
+--- !u!114 &-9195528121351227864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274570344616576308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418eaaa944e42bf40897118ef98fb6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: LaserBeam

@@ -2,7 +2,9 @@
 
 using System.Collections;
 using Gameplay.Weapons.Projectiles;
+using Gameplay.Helpers.Pool;
 using UnityEngine;
+using Gameplay.Storage;
 
 namespace Gameplay.Weapons
 {
@@ -18,11 +20,8 @@ namespace Gameplay.Weapons
 		[SerializeField]
 		private float _cooldown;
 
-
 		private bool _readyToFire = true;
 		private UnitBattleIdentity _battleIdentity;
-
-
 
 		public void Init(UnitBattleIdentity battleIdentity)
 		{
@@ -35,7 +34,14 @@ namespace Gameplay.Weapons
 			if (!_readyToFire)
 				return;
 
-			var proj = Instantiate(_projectile, _barrel.position, _barrel.rotation);
+			PooledObject pooledObject = _projectile.GetComponent<PooledObject>();
+			GameObject newBullet = ObjectsStorage.Instance.GetObject(pooledObject.Type);
+			Projectile proj = newBullet.GetComponent<Projectile>();
+
+			newBullet.SetActive(true);
+			newBullet.transform.position = _barrel.position;
+			newBullet.transform.rotation = _barrel.rotation;
+
 			proj.Init(_battleIdentity);
 			StartCoroutine(Reload(_cooldown));
 		}

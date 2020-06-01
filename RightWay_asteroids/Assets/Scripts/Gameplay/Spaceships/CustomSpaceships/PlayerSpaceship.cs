@@ -69,8 +69,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			UnSubscribe();
 			Observer.Instance().PlayerDeadWithScore.Invoke(_playerData.Score);
 			Observer.Instance().PlayerDead.Invoke();
-
-			Destroy(gameObject);
+			Observer.Instance().ObectOutdated.Invoke(gameObject);
 		}
 
 		private void Subscribe()
