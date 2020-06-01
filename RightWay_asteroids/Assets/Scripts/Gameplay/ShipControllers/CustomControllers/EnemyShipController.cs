@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CS0649
 
 using System.Collections;
-using System.Collections.Generic;
+using Gameplay.Helpers;
 using Gameplay.ShipControllers;
 using Gameplay.ShipSystems;
 using UnityEngine;
@@ -34,5 +34,30 @@ public class EnemyShipController : ShipController
 		_fire = false;
 		yield return new WaitForSeconds(delay);
 		_fire = true;
+	}
+
+	private void Start()
+	{
+		Subscribe();
+	}
+
+	private void DestroyYourself()
+	{
+		Destroy(gameObject);
+	}
+
+	private void Subscribe()
+	{
+		Observer.Instance().PlayerDead.AddListener(DestroyYourself);
+	}
+
+	private void UnSubscribe()
+	{
+		Observer.Instance().PlayerDead.RemoveListener(DestroyYourself);
+	}
+
+	private void OnDestroy()
+	{
+		UnSubscribe();
 	}
 }

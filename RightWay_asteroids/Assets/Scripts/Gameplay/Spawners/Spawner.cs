@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CS0649
 
-using System;
+using Gameplay.Helpers;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,8 +30,14 @@ namespace Gameplay.Spawners
 		{
 			if (_autoStart)
 				StartSpawn();
+
+			Subscribe();
 		}
 
+		private void OnDestroy()
+		{
+			UnSubscribe();
+		}
 
 		public void StartSpawn()
 		{
@@ -43,7 +49,6 @@ namespace Gameplay.Spawners
 			StopAllCoroutines();
 		}
 
-
 		private IEnumerator Spawn()
 		{
 			yield return new WaitForSeconds(Random.Range(_spawnDelayRange.x, _spawnDelayRange.y));
@@ -53,6 +58,16 @@ namespace Gameplay.Spawners
 				Instantiate(_object, transform.position, transform.rotation, _parent);
 				yield return new WaitForSeconds(Random.Range(_spawnPeriodRange.x, _spawnPeriodRange.y));
 			}
+		}
+
+		private void Subscribe()
+		{
+			Observer.Instance().PlayerDead.AddListener(StopSpawn);
+		}
+
+		private void UnSubscribe()
+		{
+			Observer.Instance().PlayerDead.RemoveListener(StopSpawn);
 		}
 	}
 }
