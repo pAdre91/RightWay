@@ -1227,6 +1227,7 @@ MonoBehaviour:
   - {fileID: 2666979953029418905, guid: 15b16d0a1ff02e148a3830ed46694304, type: 3}
   - {fileID: 6910651213156479279, guid: db160e65d2bc1c043828d51dfbc352da, type: 3}
   - {fileID: 3036181180036281327, guid: 8d012d111b0c45c4192b98df5e6dc62b, type: 3}
+  - {fileID: 996761823093915793, guid: 991ce3001687732409aca2cb6934b6e1, type: 3}
   _defaultPoolsSize: 10
 --- !u!1001 &6910651213141950738
 PrefabInstance:
@@ -1400,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
         type: 3}
       propertyPath: _spawnedObjects.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
         type: 3}
@@ -1439,6 +1440,12 @@ PrefabInstance:
       propertyPath: _spawnedObjects.Array.data[1]
       value: 
       objectReference: {fileID: 3036181180036281327, guid: 8d012d111b0c45c4192b98df5e6dc62b,
+        type: 3}
+    - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: _spawnedObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 996761823093915793, guid: 991ce3001687732409aca2cb6934b6e1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e57a14d12b5bc4fba0a39e34406cab, type: 3}

@@ -14,9 +14,20 @@ namespace Gameplay.ShipSystems
 		private float _longitudinalMovementSpeed;
 
 
-		public void LateralMovement(float amount)
+		public void LateralMovement(float amount, bool left = false)
 		{
-			Move(amount * _lateralMovementSpeed, Vector3.right);
+			Vector3 movingSide;
+
+			if (!left)
+			{
+				movingSide = Vector3.right;
+			}
+			else
+			{
+				movingSide = Vector3.left;
+			}
+
+			Move(amount * _lateralMovementSpeed, movingSide);
 		}
 
 		public void LongitudinalMovement(float amount)
@@ -25,7 +36,7 @@ namespace Gameplay.ShipSystems
 		}
 
 
-		private void Move(float amount, Vector3 axis)
+		protected virtual void Move(float amount, Vector3 axis)
 		{
 			transform.Translate(amount * axis.normalized);
 		}

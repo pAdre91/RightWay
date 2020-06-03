@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6671edb3d37b87b4a9dad05317ca7b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lateralMovementSpeed: 50
+  _lateralMovementSpeed: 0
   _longitudinalMovementSpeed: 10
 --- !u!114 &590599124999967758
 MonoBehaviour:
