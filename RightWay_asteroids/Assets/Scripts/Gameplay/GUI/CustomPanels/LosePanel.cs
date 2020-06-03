@@ -24,11 +24,13 @@ namespace Gameplay.GUI.CustomPanels
 		private void Subscribe()
 		{
 			Observer.Instance().PlayerDeadWithScore.AddListener(RefreshPanel);
+			Observer.Instance().RestartLevel.AddListener(TurnOffPanel);
 		}
 
 		private void UnSubscribe()
 		{
 			Observer.Instance().PlayerDeadWithScore.RemoveListener(RefreshPanel);
+			Observer.Instance().RestartLevel.RemoveListener(TurnOffPanel);
 		}
 	}
 }

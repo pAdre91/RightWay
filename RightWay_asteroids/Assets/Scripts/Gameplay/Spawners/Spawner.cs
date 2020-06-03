@@ -74,11 +74,13 @@ namespace Gameplay.Spawners
 		private void Subscribe()
 		{
 			Observer.Instance().PlayerDead.AddListener(StopSpawn);
+			Observer.Instance().RestartLevel.AddListener(StartSpawn);
 		}
 
 		private void UnSubscribe()
 		{
 			Observer.Instance().PlayerDead.RemoveListener(StopSpawn);
+			Observer.Instance().RestartLevel.RemoveListener(StartSpawn);
 		}
 	}
 }

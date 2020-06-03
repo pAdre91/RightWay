@@ -25,15 +25,16 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		{
 			base.Start();
 			Init();
+			Subscribe();
 		}
 
 		private void Init()
 		{
 			_playerData.Health = _defaultHealth;
-			DisplayHealth();
-			RefreshScore(_defaultScore);
 
-			Subscribe();
+			DisplayHealth();
+			RewriteScore(_defaultScore);
+			DisplayPlayer();
 		}
 
 		public override void ApplyDamage(IDamageDealer damageDealer)
@@ -57,6 +58,12 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			_scoreViewer.Display(_playerData.Score.ToString());
 		}
 
+		private void RewriteScore(float newScore)
+		{
+			_playerData.Score = newScore;
+			_scoreViewer.Display(_playerData.Score.ToString());
+		}
+
 		private bool IsShipDead()
 		{
 			if (_playerData.Health > 0)
@@ -64,9 +71,13 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			return true;
 		}
 
+		private void DisplayPlayer()
+		{
+			gameObject.SetActive(true);
+		}
+
 		private void DestroyShip()
 		{
-			UnSubscribe();
 			Observer.Instance().PlayerDeadWithScore.Invoke(_playerData.Score);
 			Observer.Instance().PlayerDead.Invoke();
 			Observer.Instance().ObectOutdated.Invoke(gameObject);
@@ -74,12 +85,19 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void Subscribe()
 		{
+			Observer.Instance().RestartLevel.AddListener(Init);
 			Observer.Instance().DownEnemyWithReward.AddListener(RefreshScore);
 		}
 
 		private void UnSubscribe()
 		{
+			Observer.Instance().RestartLevel.RemoveListener(Init);
 			Observer.Instance().DownEnemyWithReward.RemoveListener(RefreshScore);
+		}
+
+		private void OnDestroy()
+		{
+			UnSubscribe();
 		}
 	}
 }
