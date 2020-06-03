@@ -28,8 +28,8 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 			if (IsShipDead())
 			{
-				Observer.Instance().EnemyDown.Invoke(_enemyData.Reward);
-				Destroy(gameObject);
+				Observer.Instance().DownEnemyWithReward.Invoke(_enemyData.Reward);
+				Observer.Instance().ObectOutdated.Invoke(gameObject);
 			}
 		}
 

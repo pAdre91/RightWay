@@ -8,14 +8,14 @@ namespace Gameplay.GUI
 	public class TextInfoViewer : MonoBehaviour
 	{
 		[SerializeField]
-		private Text textField;
+		private Text _textField;
 
 		[SerializeField]
 		private string _prefix;
 
 		public void Display(string info)
 		{
-			textField.text = _prefix + info;
+			_textField.text = _prefix + info;
 		}
 	}
 }

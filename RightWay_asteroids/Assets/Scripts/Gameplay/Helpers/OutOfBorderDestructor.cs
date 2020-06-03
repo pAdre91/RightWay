@@ -20,7 +20,7 @@ public class OutOfBorderDestructor : MonoBehaviour
 	{
 		if (!GameAreaHelper.IsInGameplayArea(transform, _representation.bounds))
 		{
-			Destroy(gameObject);
+			Observer.Instance().ObectOutdated.Invoke(gameObject);
 		}
 	}
 }

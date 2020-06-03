@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gameplay.Helpers
 {
@@ -17,7 +18,11 @@ namespace Gameplay.Helpers
 			return instanceHolder = new Observer();
 		}
 
-		public Event<float> EnemyDown;
+		public Event<float> DownEnemyWithReward;
+		public Event<float> PlayerDeadWithScore;
+		public Event<GameObject> ObectOutdated;
+		public UnityEvent PlayerDead;
+		public UnityEvent RestartLevel;
 
 		Observer()
 		{
@@ -26,7 +31,11 @@ namespace Gameplay.Helpers
 
 		public void InitEvents()
 		{
-			EnemyDown = new Event<float>();
+			DownEnemyWithReward = new Event<float>();
+			PlayerDeadWithScore = new Event<float>();
+			ObectOutdated = new Event<GameObject>();
+			PlayerDead = new UnityEvent();
+			RestartLevel = new UnityEvent();
 		}
 	}
 }
