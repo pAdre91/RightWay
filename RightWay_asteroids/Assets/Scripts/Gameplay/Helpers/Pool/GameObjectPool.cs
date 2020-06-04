@@ -8,12 +8,12 @@ namespace Gameplay.Helpers.Pool
 		private Queue<GameObject> _objectPool = new Queue<GameObject>();
 		private GameObject _sampleObject;
 
-		public void GeneratePool(GameObject poolType, int count)
+		public void GeneratePool(GameObject poolType, int count, Transform parent)
 		{
 			_sampleObject = poolType;
 			for (int i = 0; i < count; i++)
 			{
-				GameObject newObject = GameObject.Instantiate(poolType);
+				GameObject newObject = GameObject.Instantiate(poolType, parent);
 				newObject.SetActive(false);
 
 				_objectPool.Enqueue(newObject);

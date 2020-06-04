@@ -53,14 +53,17 @@ namespace Gameplay.Storage
 			if (typesObject.Count == 0)
 				throw new System.NotImplementedException();
 
-			foreach (GameObject enemy in typesObject)
+			foreach (GameObject newObject in typesObject)
 			{
-				if (!enemy.TryGetComponent(out PooledObject pooledObject))
+				if (!newObject.TryGetComponent(out PooledObject pooledObject))
 					continue;
+
+				GameObject newObjectStorage = new GameObject(newObject.name);
+				newObjectStorage.transform.parent = gameObject.transform;
 
 				GameObjectPool pool = new GameObjectPool();
 				_pools.Add(pooledObject.Type, pool);
-				pool.GeneratePool(enemy, poolSize);
+				pool.GeneratePool(newObject, poolSize, newObjectStorage.transform);
 				_poolsKey.Add(pooledObject.Type);
 			}
 		}
