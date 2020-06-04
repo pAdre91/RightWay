@@ -12,13 +12,10 @@ namespace Gameplay.ShipSystems
 		[SerializeField]
 		private List<Weapon> _weapons;
 
-
-
 		public void Init(UnitBattleIdentity battleIdentity)
 		{
 			_weapons.ForEach(w => w.Init(battleIdentity));
 		}
-
 
 		public void TriggerFire()
 		{

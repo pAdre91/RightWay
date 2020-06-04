@@ -10,23 +10,30 @@ namespace Gameplay.Weapons
 {
 	public class Weapon : MonoBehaviour
 	{
+		//ссылка на компонент объекта
 		[SerializeField]
 		private Projectile _projectile;
 
+		//Ссылка на трансформ оружия
 		[SerializeField]
 		private Transform _barrel;
 
+		//Задержка стрельбы
 		[SerializeField]
 		private float _cooldown;
 
+		//флаг готовности стрельбы
 		private bool _readyToFire = true;
+		//Дружественность снаряда
 		private UnitBattleIdentity _battleIdentity;
 
+		//Инициализация дружественности
 		public void Init(UnitBattleIdentity battleIdentity)
 		{
 			_battleIdentity = battleIdentity;
 		}
 
+		//Процесс выстрела из орудия
 		public void TriggerFire()
 		{
 			if (!_readyToFire)
@@ -44,6 +51,7 @@ namespace Gameplay.Weapons
 			StartCoroutine(Reload(_cooldown));
 		}
 
+		//Перезарядка
 		private IEnumerator Reload(float cooldown)
 		{
 			_readyToFire = false;

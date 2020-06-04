@@ -6,7 +6,7 @@ namespace Gameplay.Helpers
 {
 	public class OutOfBorderDestructor : MonoBehaviour
 	{
-
+		//Спрайт отслеживаемого объекта
 		[SerializeField]
 		private SpriteRenderer _representation;
 
@@ -15,6 +15,7 @@ namespace Gameplay.Helpers
 			CheckBorders();
 		}
 
+		//Проверка нахождения объекта в области видимости камеры
 		private void CheckBorders()
 		{
 			if (!GameAreaHelper.IsInGameplayArea(transform, _representation.bounds))

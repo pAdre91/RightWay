@@ -9,11 +9,14 @@ namespace Gameplay.Storage
 {
 	public class UIObjectsStorage : MonoBehaviour
 	{
+		//Singleton
 		public static UIObjectsStorage Instance { get; private set; }
 
+		//Ссылка на объект отображения здоровья игрока
 		[SerializeField]
 		private TextInfoViewer _playerHealth;
 
+		//Ссылка на объект отображения счета игрока
 		[SerializeField]
 		private TextInfoViewer _playerScore;
 

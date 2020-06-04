@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16c62f91b206fd4f9af7a858af1fe9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectCollider: {fileID: 2540544495500081184}
+  _objectCollider: {fileID: 2540544495500081184}
   _playerSpaceship: {fileID: 642069740}
 --- !u!114 &6910651213156479314
 MonoBehaviour:
@@ -230,8 +230,6 @@ MonoBehaviour:
   _battleIdentity: 1
   _defaultHealth: 300
   _playerData: {fileID: 563119457}
-  _healthViewer: {fileID: 0}
-  _scoreViewer: {fileID: 0}
 --- !u!114 &563119457
 MonoBehaviour:
   m_ObjectHideFlags: 0

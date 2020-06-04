@@ -10,12 +10,22 @@ namespace Gameplay.Bonuses
 {
 	public class BonusManager : MonoBehaviour
 	{
+		//Все имеющиеся префабы бонусов
 		[SerializeField]
 		List<GameObject> _bonuses;
 
+		//Ссылка на наблюдателя
 		private Observer _observer = Observer.Instance();
+
+		//Рандомайзер для использования в генерации бонусов
 		private System.Random _randomizer = new System.Random();
 
+		private void Start()
+		{
+			Subscribe();
+		}
+
+		//Производится рассчет создавать или не создавать бонус, в зависимости от шанса
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{
 			float chance = _randomizer.Next(100);
@@ -25,6 +35,7 @@ namespace Gameplay.Bonuses
 
 		}
 
+		//Создание бонуса
 		private void CreateBonus(Vector3 startPosition, Quaternion rotation)
 		{
 			int randomBonusIndex = _randomizer.Next(_bonuses.Count);
@@ -39,19 +50,16 @@ namespace Gameplay.Bonuses
 			}
 		}
 
+		//Подписка на события
 		private void Subscribe()
 		{
 			_observer.EnemyDown.AddListener(CreateBonusWithChance);
 		}
 
+		//Отписка от событий
 		private void UnSubscribe()
 		{
 			_observer.EnemyDown.RemoveListener(CreateBonusWithChance);
-		}
-
-		private void Start()
-		{
-			Subscribe();
 		}
 
 		private void OnDestroy()

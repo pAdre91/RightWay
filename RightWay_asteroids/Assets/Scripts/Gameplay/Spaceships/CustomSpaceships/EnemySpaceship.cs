@@ -9,12 +9,15 @@ namespace Gameplay.Spaceships.CustomSpaceships
 {
 	public class EnemySpaceship : Spaceship, IDamagable
 	{
+		//Ссылка на компонент даты цели
 		[SerializeField]
 		private EnemyData _enemyData;
 
+		//Награда за сдитие цели
 		[SerializeField]
 		private float _reward;
 
+		//Ссылка на наблюдателя
 		private Observer _observer = Observer.Instance();
 
 		private new void Start()
@@ -24,6 +27,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			_enemyData.Reward = _reward;
 		}
 
+		//обработка получения урона
 		public override void ApplyDamage(IDamageDealer damageDealer)
 		{
 			_enemyData.Health -= damageDealer.Damage;
@@ -36,6 +40,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			}
 		}
 
+		//Проверка на смерть
 		private bool IsShipDead()
 		{
 			if (_enemyData.Health > 0)

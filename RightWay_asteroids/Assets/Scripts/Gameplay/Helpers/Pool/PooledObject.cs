@@ -6,6 +6,7 @@ namespace Gameplay.Helpers.Pool
 {
 	public class PooledObject : MonoBehaviour
 	{
+		//тип объекта помещаемого в пул
 		[SerializeField]
 		private string _type;
 

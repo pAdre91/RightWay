@@ -6,15 +6,14 @@ namespace Gameplay.ShipControllers
 {
 	public abstract class ShipController : MonoBehaviour
 	{
-
+		//Ссылка на скрипт
 		private ISpaceship _spaceship;
 
-
+		//Инициализация мемберов
 		public void Init(ISpaceship spaceship)
 		{
 			_spaceship = spaceship;
 		}
-
 
 		private void Update()
 		{
@@ -22,7 +21,9 @@ namespace Gameplay.ShipControllers
 			ProcessFire(_spaceship.WeaponSystem);
 		}
 
+		//Метод реализуемый наследниками
 		protected abstract void ProcessHandling(MovementSystem movementSystem);
+		//Метод реализуемый наследниками
 		protected abstract void ProcessFire(WeaponSystem fireSystem);
 	}
 }

@@ -9,17 +9,14 @@ namespace Gameplay.Bonuses
 {
 	abstract public class Bonus : MonoBehaviour
 	{
+		//скрипт системы движения
 		[SerializeField]
 		private MovementSystem _movementSystem;
 
-		[SerializeField]
-		private UnitBattleIdentity _battleIdentity;
-
+		//Ссылка на наблюдателя
 		private Observer _observer = Observer.Instance();
 
-		public MovementSystem MovementSystem => _movementSystem;
-		public UnitBattleIdentity BattleIdentity => _battleIdentity;
-
+		//Метод применения бонуса реализуемый наследниками
 		abstract public void ApplyBonus(IBonusRecipient playerSpaceship);
 
 		protected void Start()
@@ -29,7 +26,7 @@ namespace Gameplay.Bonuses
 
 		private void Update()
 		{
-			MovementSystem.LongitudinalMovement(Time.deltaTime);
+			_movementSystem.LongitudinalMovement(Time.deltaTime);
 		}
 
 		private void OnCollisionEnter2D(Collision2D collision)
@@ -48,16 +45,19 @@ namespace Gameplay.Bonuses
 			UnSubscribe();
 		}
 
+		//Подписка на события
 		private void Subscribe()
 		{
 			_observer.PlayerDead.AddListener(DestroyBonus);
 		}
 
+		//Отписка от событий
 		private void UnSubscribe()
 		{
 			_observer.PlayerDead.RemoveListener(DestroyBonus);
 		}
 
+		//Пометка объекта устаревшим
 		private void DestroyBonus()
 		{
 			_observer.ObectOutdated.Invoke(gameObject);

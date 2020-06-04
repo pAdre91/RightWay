@@ -4,16 +4,16 @@ namespace Gameplay.Helpers
 {
 	public static class GameAreaHelper
 	{
-
+		//Ссылка на камеру
 		private static Camera _camera;
 
-
+		//Инициализация ссылки на камеру
 		static GameAreaHelper()
 		{
 			_camera = Camera.main;
 		}
 
-
+		//Проверят находится ли объект или его часть на сцене
 		public static bool IsInGameplayArea(Transform objectTransform, Bounds objectBounds)
 		{
 			GetCameraBounds(out float topBound, out float bottomBound, out float leftBound, out float rightBound);
@@ -26,6 +26,7 @@ namespace Gameplay.Helpers
 				&& (objectPos.y + objectBounds.extents.y > bottomBound);
 		}
 
+		//Проверяет полностью ли объект находится на сцене
 		public static bool IsAllObjectInGameplayArea(Transform objectTransform, Bounds objectBounds)
 		{
 			GetCameraBounds(out float topBound, out float bottomBound, out float leftBound, out float rightBound);
@@ -38,6 +39,7 @@ namespace Gameplay.Helpers
 				&& (objectPos.y > bottomBound + objectBounds.extents.y);
 		}
 
+		//нахождение границ видимой камерой области
 		private static void GetCameraBounds(out float top, out float bottom, out float left, out float right)
 		{
 			var camHalfHeight = _camera.orthographicSize;

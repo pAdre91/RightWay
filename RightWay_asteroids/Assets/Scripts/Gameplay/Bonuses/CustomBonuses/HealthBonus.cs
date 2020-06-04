@@ -7,9 +7,11 @@ namespace Gameplay.Bonuses.CustomBonuses
 {
 	public class HealthBonus : Bonus
 	{
+		//сила аптечки
 		[SerializeField]
 		private float _healingPower;
 
+		//применение оптечки к получателю
 		public override void ApplyBonus(IBonusRecipient recipient)
 		{
 			recipient.Healing(_healingPower);

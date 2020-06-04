@@ -11,18 +11,22 @@ namespace Gameplay.Spawners
 {
 	public class Spawner : MonoBehaviour
 	{
+		//Список объектов которые может создавать этот спаунер
 		[SerializeField]
 		private List<GameObject> _spawnedObjects;
 
+		//минимальная задержка спауна
 		[SerializeField]
 		private Vector2 _spawnPeriodRange;
 
+		//максимальная задержка спауна
 		[SerializeField]
 		private Vector2 _spawnDelayRange;
 
+		//флаг автоматического спауна врагов
 		[SerializeField]
 		private bool _autoStart = true;
-
+		//Ссылка на наблюдателя
 		private Observer _observer = Observer.Instance();
 
 		private void Start()
@@ -38,16 +42,19 @@ namespace Gameplay.Spawners
 			UnSubscribe();
 		}
 
+		//Обертка над корутиной
 		public void StartSpawn()
 		{
 			StartCoroutine(Spawn());
 		}
 
+		//остановка спауна врагов
 		public void StopSpawn()
 		{
 			StopAllCoroutines();
 		}
 
+		//Непосредственный спаун врага
 		private IEnumerator Spawn()
 		{
 			System.Random randomizer = new System.Random();
@@ -74,12 +81,13 @@ namespace Gameplay.Spawners
 			}
 		}
 
+		//Подписка на события
 		private void Subscribe()
 		{
 			_observer.PlayerDead.AddListener(StopSpawn);
 			_observer.RestartLevel.AddListener(StartSpawn);
 		}
-
+		//Отписка от событий
 		private void UnSubscribe()
 		{
 			_observer.PlayerDead.RemoveListener(StopSpawn);

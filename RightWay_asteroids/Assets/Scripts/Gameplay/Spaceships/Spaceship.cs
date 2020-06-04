@@ -9,18 +9,23 @@ namespace Gameplay.Spaceships
 {
 	public class Spaceship : MonoBehaviour, ISpaceship, IDamagable
 	{
+		//ссылка на компонент контроллера
 		[SerializeField]
 		private ShipController _shipController;
 
+		//Ссылка на компонент двигательной системы
 		[SerializeField]
 		private MovementSystem _movementSystem;
 
+		//ссылка на оружейную систему
 		[SerializeField]
 		private WeaponSystem _weaponSystem;
 
+		//определение дружественности корабля
 		[SerializeField]
 		private UnitBattleIdentity _battleIdentity;
 
+		//Стартовое здоровье корабля
 		[SerializeField]
 		protected float _defaultHealth;
 
@@ -35,6 +40,7 @@ namespace Gameplay.Spaceships
 			_weaponSystem.Init(_battleIdentity);
 		}
 
+		//стандартное поведение при получении кораблем урона
 		virtual public void ApplyDamage(IDamageDealer damageDealer)
 		{
 			Destroy(gameObject);

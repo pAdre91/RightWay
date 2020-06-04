@@ -5,9 +5,12 @@ namespace Gameplay.Helpers.Pool
 {
 	public class GameObjectPool
 	{
+		//пул объектов
 		private Queue<GameObject> _objectPool = new Queue<GameObject>();
+		//Шаблон объекта пула
 		private GameObject _sampleObject;
 
+		//Создание объектов пула
 		public void GeneratePool(GameObject poolType, int count, Transform parent)
 		{
 			_sampleObject = poolType;
@@ -20,12 +23,14 @@ namespace Gameplay.Helpers.Pool
 			}
 		}
 
+		//Помещение объекта в пул
 		public void Release(GameObject element)
 		{
 			element.gameObject.SetActive(false);
 			_objectPool.Enqueue(element);
 		}
 
+		//Возвращение объекта из пула
 		public GameObject Take()
 		{
 			int counter = 0;

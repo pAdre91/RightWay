@@ -9,16 +9,21 @@ namespace Gameplay.Storage
 {
 	public class ObjectsStorage : MonoBehaviour
 	{
+		//список префабов хранимых объектов
 		[SerializeField]
-		private List<GameObject> _spawnObjects;
+		private List<GameObject> _storageObjects;
 
+		//Количество создаваемых объектов
 		[SerializeField]
 		private int _defaultPoolsSize;
-
+		//пулы объектов с тегом для поиска
 		private Dictionary<string, GameObjectPool> _pools = new Dictionary<string, GameObjectPool>();
+		//толкьо теги объектов
 		private List<string> _poolsKey = new List<string>();
+		//ссылка на наблюдателя
 		private Observer _observer = Observer.Instance();
 
+		//Singleton
 		public static ObjectsStorage Instance { get; private set; }
 
 		private void Awake()
@@ -31,7 +36,7 @@ namespace Gameplay.Storage
 
 		private void Start()
 		{
-			InitializePools(_spawnObjects, _defaultPoolsSize);
+			InitializePools(_storageObjects, _defaultPoolsSize);
 
 			Subscribe();
 		}
@@ -41,6 +46,7 @@ namespace Gameplay.Storage
 			UnSubscribe();
 		}
 
+		//возвращение объекта из пула по типу
 		public GameObject GetObject(string objectType)
 		{
 			if (!_poolsKey.Contains(objectType))
@@ -48,6 +54,7 @@ namespace Gameplay.Storage
 			return _pools[objectType].Take();
 		}
 
+		//Создание пулов объектов
 		private void InitializePools(List<GameObject> typesObject, int poolSize)
 		{
 			if (typesObject.Count == 0)
@@ -68,6 +75,7 @@ namespace Gameplay.Storage
 			}
 		}
 
+		//Возвращение объекта в хранилище
 		private void ReturnObjectToStorage(GameObject gameObject)
 		{
 			if (!gameObject.TryGetComponent(out PooledObject pooledObject))
@@ -76,11 +84,13 @@ namespace Gameplay.Storage
 			_pools[pooledObject.Type].Release(gameObject);
 		}
 
+		//Подписка на события
 		private void Subscribe()
 		{
 			_observer.ObectOutdated.AddListener(ReturnObjectToStorage);
 		}
 
+		//Отписка от событий
 		private void UnSubscribe()
 		{
 			_observer.ObectOutdated.RemoveListener(ReturnObjectToStorage);
