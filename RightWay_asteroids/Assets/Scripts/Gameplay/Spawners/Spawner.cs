@@ -6,7 +6,6 @@ using Gameplay.Storage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Gameplay.Spawners
 {
@@ -61,11 +60,14 @@ namespace Gameplay.Spawners
 			{
 				randomObject = randomizer.Next(_spawnedObjects.Count);
 				pooledObject = _spawnedObjects[randomObject].GetComponent<PooledObject>();
-				newEnemy = ObjectsStorage.Instance.GetObject(pooledObject.Type);
 
-				newEnemy.SetActive(true);
-				newEnemy.transform.position = transform.position;
-				newEnemy.transform.rotation = transform.rotation;
+				if (pooledObject != null)
+				{
+					newEnemy = ObjectsStorage.Instance.GetObject(pooledObject.Type);
+					newEnemy.SetActive(true);
+					newEnemy.transform.position = transform.position;
+					newEnemy.transform.rotation = transform.rotation;
+				}
 
 				yield return new WaitForSeconds(Random.Range(_spawnPeriodRange.x, _spawnPeriodRange.y));
 			}

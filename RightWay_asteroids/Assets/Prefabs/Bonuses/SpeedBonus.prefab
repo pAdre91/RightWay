@@ -64,8 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSystem: {fileID: 8174760809994394674}
   _battleIdentity: 0
-  _speedPower: 5
-  _duration: 50
+  _speedPower: 1
+  _duration: 3
 --- !u!212 &7232286632114185643
 SpriteRenderer:
   m_ObjectHideFlags: 0

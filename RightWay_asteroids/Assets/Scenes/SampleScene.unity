@@ -614,6 +614,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585998429}
   m_CullTransparentMesh: 0
+--- !u!114 &1077077827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 642069740, guid: db160e65d2bc1c043828d51dfbc352da,
+    type: 3}
+  m_PrefabInstance: {fileID: 6910651213141950738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad362149cc398ea488379c38fe3b1513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1081286721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7139034145302338193, guid: c2e57a14d12b5bc4fba0a39e34406cab,
@@ -1322,6 +1334,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSpaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 6910651213156479313, guid: db160e65d2bc1c043828d51dfbc352da,
+        type: 3}
+      propertyPath: _playerSpaceship
+      value: 
+      objectReference: {fileID: 1077077827}
     - target: {fileID: 6910651213495973518, guid: db160e65d2bc1c043828d51dfbc352da,
         type: 3}
       propertyPath: _objectsStorage
