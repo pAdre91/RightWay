@@ -4,6 +4,8 @@ namespace Gameplay.GUI.CustomPanels
 {
 	public class LosePanel : EndGamePanel
 	{
+		private Observer _observer = Observer.Instance();
+
 		private void Start()
 		{
 			Subscribe();
@@ -23,14 +25,14 @@ namespace Gameplay.GUI.CustomPanels
 
 		private void Subscribe()
 		{
-			Observer.Instance().PlayerDeadWithScore.AddListener(RefreshPanel);
-			Observer.Instance().RestartLevel.AddListener(TurnOffPanel);
+			_observer.PlayerDeadWithScore.AddListener(RefreshPanel);
+			_observer.RestartLevel.AddListener(TurnOffPanel);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().PlayerDeadWithScore.RemoveListener(RefreshPanel);
-			Observer.Instance().RestartLevel.RemoveListener(TurnOffPanel);
+			_observer.PlayerDeadWithScore.RemoveListener(RefreshPanel);
+			_observer.RestartLevel.RemoveListener(TurnOffPanel);
 		}
 	}
 }

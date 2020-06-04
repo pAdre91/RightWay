@@ -25,12 +25,12 @@ namespace Gameplay.Helpers
 		public UnityEvent PlayerDead;
 		public UnityEvent RestartLevel;
 
-		Observer()
+		private Observer()
 		{
 			InitEvents();
 		}
 
-		public void InitEvents()
+		private void InitEvents()
 		{
 			DownEnemyWithReward = new Event<float>();
 			PlayerDeadWithScore = new Event<float>();

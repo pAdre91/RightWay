@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5321759386261534667}
   - component: {fileID: -3238037011415896623}
   - component: {fileID: 4170373844644530868}
+  - component: {fileID: 2707637815140458067}
   m_Layer: 0
   m_Name: SpeedBonus
   m_TagString: Untagged
@@ -176,3 +177,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.39, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &2707637815140458067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174760809994394676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d380b7972717e499a083ffbf061981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _representation: {fileID: 7232286632114185643}

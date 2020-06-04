@@ -4,26 +4,25 @@ using Gameplay.GUI;
 using Gameplay.ShipsData.CustomData;
 using Gameplay.Weapons;
 using Gameplay.Helpers;
+using Gameplay.Bonuses;
+using Gameplay.Storage;
+
 using UnityEngine;
 using System.Collections;
 
 namespace Gameplay.Spaceships.CustomSpaceships
 {
-	public class PlayerSpaceship : Spaceship, IDamagable
+	public class PlayerSpaceship : Spaceship, IDamagable, IBonusRecipient
 	{
 		[SerializeField]
 		private PlayerData _playerData;
 
-		[SerializeField]
 		private TextInfoViewer _healthViewer;
-
-		[SerializeField]
 		private TextInfoViewer _scoreViewer;
 
-		private const float _defaultScore = 0;
-		private const float _defaultSpeed = 1;
-
 		private bool _isTimerStarted = false;
+		private Observer _observer = Observer.Instance();
+		private UIObjectsStorage _objectsStorageUI = UIObjectsStorage.Instance;
 
 		public float CurrentSpeed => _playerData.Speed;
 
@@ -57,11 +56,14 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void Init()
 		{
+			_healthViewer = _objectsStorageUI.PlayerHealthUI;
+			_scoreViewer = _objectsStorageUI.PlayerScoreUI;
+
 			_playerData.Health = _defaultHealth;
-			_playerData.Speed = _defaultSpeed;
+			_playerData.Speed = Constants.DefaultPlayerSpeed;
 
 			DisplayHealth();
-			RewriteScore(_defaultScore);
+			RewriteScore(Constants.DefaultPlayerScore);
 			DisplayPlayer();
 		}
 
@@ -106,21 +108,22 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void DestroyShip()
 		{
-			Observer.Instance().PlayerDeadWithScore.Invoke(_playerData.Score);
-			Observer.Instance().PlayerDead.Invoke();
-			Observer.Instance().ObectOutdated.Invoke(gameObject);
+			_observer.PlayerDeadWithScore.Invoke(_playerData.Score);
+			_observer.PlayerDead.Invoke();
+			Destroy(gameObject);
+			//_observer.ObectOutdated.Invoke(gameObject);
 		}
 
 		private void Subscribe()
 		{
-			Observer.Instance().RestartLevel.AddListener(Init);
-			Observer.Instance().DownEnemyWithReward.AddListener(RefreshScore);
+			_observer.RestartLevel.AddListener(Init);
+			_observer.DownEnemyWithReward.AddListener(RefreshScore);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().RestartLevel.RemoveListener(Init);
-			Observer.Instance().DownEnemyWithReward.RemoveListener(RefreshScore);
+			_observer.RestartLevel.RemoveListener(Init);
+			_observer.DownEnemyWithReward.RemoveListener(RefreshScore);
 		}
 
 		private void OnDestroy()

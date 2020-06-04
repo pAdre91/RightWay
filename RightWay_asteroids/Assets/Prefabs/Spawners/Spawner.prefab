@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e165445b5e1b14e8e663bf098668bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _object: {fileID: 590599124999967857, guid: c2f7d29ccf40de44d81e56cc718f5e0e, type: 3}
-  _parent: {fileID: 0}
+  _spawnedObjects:
+  - {fileID: 590599124999967857, guid: c2f7d29ccf40de44d81e56cc718f5e0e, type: 3}
+  - {fileID: 3036181180036281327, guid: 8d012d111b0c45c4192b98df5e6dc62b, type: 3}
+  - {fileID: 996761823093915793, guid: 991ce3001687732409aca2cb6934b6e1, type: 3}
   _spawnPeriodRange: {x: 2.5, y: 6}
   _spawnDelayRange: {x: 0, y: 2}
   _autoStart: 1

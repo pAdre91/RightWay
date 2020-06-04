@@ -2,7 +2,6 @@
 
 using Gameplay.Helpers;
 using Gameplay.Helpers.Pool;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ namespace Gameplay.Storage
 
 		private Dictionary<string, GameObjectPool> _pools = new Dictionary<string, GameObjectPool>();
 		private List<string> _poolsKey = new List<string>();
+		private Observer _observer = Observer.Instance();
 
 		public static ObjectsStorage Instance { get; private set; }
 
@@ -53,14 +53,17 @@ namespace Gameplay.Storage
 			if (typesObject.Count == 0)
 				throw new System.NotImplementedException();
 
-			foreach (GameObject enemy in typesObject)
+			foreach (GameObject newObject in typesObject)
 			{
-				if (!enemy.TryGetComponent(out PooledObject pooledObject))
+				if (!newObject.TryGetComponent(out PooledObject pooledObject))
 					continue;
+
+				GameObject newObjectStorage = new GameObject(newObject.name);
+				newObjectStorage.transform.parent = gameObject.transform;
 
 				GameObjectPool pool = new GameObjectPool();
 				_pools.Add(pooledObject.Type, pool);
-				pool.GeneratePool(enemy, poolSize);
+				pool.GeneratePool(newObject, poolSize, newObjectStorage.transform);
 				_poolsKey.Add(pooledObject.Type);
 			}
 		}
@@ -75,12 +78,12 @@ namespace Gameplay.Storage
 
 		private void Subscribe()
 		{
-			Observer.Instance().ObectOutdated.AddListener(ReturnObjectToStorage);
+			_observer.ObectOutdated.AddListener(ReturnObjectToStorage);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().ObectOutdated.RemoveListener(ReturnObjectToStorage);
+			_observer.ObectOutdated.RemoveListener(ReturnObjectToStorage);
 		}
 	}
 }

@@ -13,23 +13,21 @@ namespace Gameplay.Bonuses
 		[SerializeField]
 		List<GameObject> _bonuses;
 
-		private float _chanceCreateBonus = 30;			//Унести в константы
+		private Observer _observer = Observer.Instance();
+		private System.Random _randomizer = new System.Random();
 
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{
-			System.Random randomizer = new System.Random();
-			float chance = randomizer.Next(100);
+			float chance = _randomizer.Next(100);
 
-			if (chance < _chanceCreateBonus )
+			if (chance < Constants.ChanceGetBonus )
 				CreateBonus(downEnemy.transform.position, downEnemy.transform.rotation);
 
 		}
 
 		private void CreateBonus(Vector3 startPosition, Quaternion rotation)
 		{
-			System.Random randomizer = new System.Random();
-
-			int randomBonusIndex = randomizer.Next(_bonuses.Count);
+			int randomBonusIndex = _randomizer.Next(_bonuses.Count);
 			PooledObject pooledObject = _bonuses[randomBonusIndex].GetComponent<PooledObject>();
 
 			if (pooledObject != null)
@@ -43,12 +41,12 @@ namespace Gameplay.Bonuses
 
 		private void Subscribe()
 		{
-			Observer.Instance().EnemyDown.AddListener(CreateBonusWithChance);
+			_observer.EnemyDown.AddListener(CreateBonusWithChance);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().EnemyDown.RemoveListener(CreateBonusWithChance);
+			_observer.EnemyDown.RemoveListener(CreateBonusWithChance);
 		}
 
 		private void Start()

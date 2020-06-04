@@ -1,10 +1,13 @@
 ﻿using Gameplay.Helpers;
 using UnityEngine;
 
-public class RestartButton : MonoBehaviour
+namespace Gameplay.GUI.Buttons
 {
-	public void Action()
+	public class RestartButton : MonoBehaviour
 	{
-		Observer.Instance().RestartLevel.Invoke();
+		public void Action()
+		{
+			Observer.Instance().RestartLevel.Invoke();
+		}
 	}
 }

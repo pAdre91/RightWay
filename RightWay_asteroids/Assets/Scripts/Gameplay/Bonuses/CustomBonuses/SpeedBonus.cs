@@ -1,20 +1,22 @@
 ﻿#pragma warning disable CS0649
 
-using Gameplay.Bonuses;
 using Gameplay.Helpers;
-using Gameplay.Spaceships.CustomSpaceships;
 using UnityEngine;
-public class SpeedBonus : Bonus
+
+namespace Gameplay.Bonuses.CustomBonuses
 {
-	[SerializeField]
-	private float _speedPower;
-
-	[SerializeField]
-	private float _duration;
-
-	public override void ApplyBonus(PlayerSpaceship playerSpaceship)
+	public class SpeedBonus : Bonus
 	{
-		playerSpaceship.IncreaseSpeed(_speedPower, _duration);
-		Observer.Instance().ObectOutdated.Invoke(gameObject);
+		[SerializeField]
+		private float _speedPower;
+
+		[SerializeField]
+		private float _duration;
+
+		public override void ApplyBonus(IBonusRecipient recipient)
+		{
+			recipient.IncreaseSpeed(_speedPower, _duration);
+			Observer.Instance().ObectOutdated.Invoke(gameObject);
+		}
 	}
 }
