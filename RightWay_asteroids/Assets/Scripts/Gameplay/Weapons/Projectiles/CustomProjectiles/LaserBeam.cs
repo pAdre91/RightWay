@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Weapons.Projectiles;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LaserBeam : Projectile
+namespace Gameplay.Weapons.Projectiles.CustomProjectiles
 {
-	protected override void Move(float speed)
+	public class LaserBeam : Projectile
 	{
-		transform.Translate(speed * Time.deltaTime * Vector3.up);
+		protected override void Move(float speed)
+		{
+			transform.Translate(speed * Time.deltaTime * Vector3.up);
+		}
 	}
 }

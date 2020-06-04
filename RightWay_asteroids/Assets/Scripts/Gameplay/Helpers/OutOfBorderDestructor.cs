@@ -1,26 +1,26 @@
 ﻿#pragma warning disable CS0649
 
-using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Helpers;
 using UnityEngine;
 
-public class OutOfBorderDestructor : MonoBehaviour
+namespace Gameplay.Helpers
 {
-
-	[SerializeField]
-	private SpriteRenderer _representation;
-
-	void Update()
+	public class OutOfBorderDestructor : MonoBehaviour
 	{
-		CheckBorders();
-	}
 
-	private void CheckBorders()
-	{
-		if (!GameAreaHelper.IsInGameplayArea(transform, _representation.bounds))
+		[SerializeField]
+		private SpriteRenderer _representation;
+
+		void Update()
 		{
-			Observer.Instance().ObectOutdated.Invoke(gameObject);
+			CheckBorders();
+		}
+
+		private void CheckBorders()
+		{
+			if (!GameAreaHelper.IsInGameplayArea(transform, _representation.bounds))
+			{
+				Observer.Instance().ObectOutdated.Invoke(gameObject);
+			}
 		}
 	}
 }

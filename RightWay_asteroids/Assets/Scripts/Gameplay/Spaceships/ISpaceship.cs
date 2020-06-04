@@ -1,5 +1,4 @@
-﻿
-using Gameplay.ShipSystems;
+﻿using Gameplay.ShipSystems;
 
 namespace Gameplay.Spaceships
 {

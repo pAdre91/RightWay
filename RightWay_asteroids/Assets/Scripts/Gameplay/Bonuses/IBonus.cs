@@ -1,7 +1,9 @@
-﻿using Gameplay.ShipSystems;
-using Gameplay.Spaceships.CustomSpaceships;
+﻿using Gameplay.Spaceships.CustomSpaceships;
 
-interface IBonus
+namespace Gameplay.Bonuses
 {
-	void ApplyBonus(PlayerSpaceship playerSpaceship);
+	interface IBonus
+	{
+		void ApplyBonus(PlayerSpaceship playerSpaceship);
+	}
 }

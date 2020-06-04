@@ -1,18 +1,20 @@
 ﻿#pragma warning disable CS0649
 
-using Gameplay.Bonuses;
 using Gameplay.Helpers;
 using Gameplay.Spaceships.CustomSpaceships;
 using UnityEngine;
 
-public class HealthBonus : Bonus
+namespace Gameplay.Bonuses.CustomBonuses
 {
-	[SerializeField]
-	private float _healingPower;
-
-	public override void ApplyBonus(PlayerSpaceship playerSpaceship)
+	public class HealthBonus : Bonus
 	{
-		playerSpaceship.Healing(_healingPower);
-		Observer.Instance().ObectOutdated.Invoke(gameObject);
+		[SerializeField]
+		private float _healingPower;
+
+		public override void ApplyBonus(PlayerSpaceship playerSpaceship)
+		{
+			playerSpaceship.Healing(_healingPower);
+			Observer.Instance().ObectOutdated.Invoke(gameObject);
+		}
 	}
 }

@@ -10,7 +10,6 @@ namespace Gameplay.Weapons
 {
 	public class Weapon : MonoBehaviour
 	{
-
 		[SerializeField]
 		private Projectile _projectile;
 
@@ -27,7 +26,6 @@ namespace Gameplay.Weapons
 		{
 			_battleIdentity = battleIdentity;
 		}
-
 
 		public void TriggerFire()
 		{
@@ -46,13 +44,11 @@ namespace Gameplay.Weapons
 			StartCoroutine(Reload(_cooldown));
 		}
 
-
 		private IEnumerator Reload(float cooldown)
 		{
 			_readyToFire = false;
 			yield return new WaitForSeconds(cooldown);
 			_readyToFire = true;
 		}
-
 	}
 }

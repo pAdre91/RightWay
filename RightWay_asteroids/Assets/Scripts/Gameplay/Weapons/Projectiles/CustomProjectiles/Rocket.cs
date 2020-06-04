@@ -1,10 +1,13 @@
 ﻿using Gameplay.Weapons.Projectiles;
 using UnityEngine;
 
-public class Rocket : Projectile
+namespace Gameplay.Weapons.Projectiles.CustomProjectiles
 {
-	protected override void Move(float speed)
+	public class Rocket : Projectile
 	{
-		transform.Translate(speed * Time.deltaTime * Vector3.up);
+		protected override void Move(float speed)
+		{
+			transform.Translate(speed * Time.deltaTime * Vector3.up);
+		}
 	}
 }
