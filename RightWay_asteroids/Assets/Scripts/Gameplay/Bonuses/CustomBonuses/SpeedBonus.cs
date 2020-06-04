@@ -1,4 +1,6 @@
-﻿using Gameplay.Bonuses;
+﻿#pragma warning disable CS0649
+
+using Gameplay.Bonuses;
 using Gameplay.Helpers;
 using Gameplay.Spaceships.CustomSpaceships;
 using UnityEngine;

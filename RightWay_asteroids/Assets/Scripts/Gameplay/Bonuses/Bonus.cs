@@ -1,4 +1,6 @@
-﻿using Gameplay.Helpers;
+﻿#pragma warning disable CS0649
+
+using Gameplay.Helpers;
 using Gameplay.ShipSystems;
 using Gameplay.Spaceships.CustomSpaceships;
 using Gameplay.Weapons;

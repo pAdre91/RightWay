@@ -1,4 +1,6 @@
-﻿using Gameplay.Helpers;
+﻿#pragma warning disable CS0649
+
+using Gameplay.Helpers;
 using Gameplay.Helpers.Pool;
 using Gameplay.Storage;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace Gameplay.Bonuses
 		[SerializeField]
 		List<GameObject> _bonuses;
 
-		private float _chanceCreateBonus = 100;			//Унести в константы
+		private float _chanceCreateBonus = 30;			//Унести в константы
 
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{

@@ -46,7 +46,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			yield return new WaitForSeconds(duration);
 			_playerData.Speed -= speedPower;
 			_isTimerStarted = false;
-		}
+		} 
 
 		private new void Start()
 		{
