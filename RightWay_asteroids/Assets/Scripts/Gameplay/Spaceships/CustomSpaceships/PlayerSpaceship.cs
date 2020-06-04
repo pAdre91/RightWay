@@ -6,10 +6,11 @@ using Gameplay.Weapons;
 using Gameplay.Helpers;
 using UnityEngine;
 using System.Collections;
+using Gameplay.Bonuses;
 
 namespace Gameplay.Spaceships.CustomSpaceships
 {
-	public class PlayerSpaceship : Spaceship, IDamagable
+	public class PlayerSpaceship : Spaceship, IDamagable, IBonusRecipient
 	{
 		[SerializeField]
 		private PlayerData _playerData;

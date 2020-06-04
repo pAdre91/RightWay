@@ -14,11 +14,11 @@ namespace Gameplay.Bonuses
 		List<GameObject> _bonuses;
 
 		private Observer _observer = Observer.Instance();
+		private System.Random _randomizer = new System.Random();
 
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{
-			System.Random randomizer = new System.Random();
-			float chance = randomizer.Next(100);
+			float chance = _randomizer.Next(100);
 
 			if (chance < Constants.ChanceGetBonus )
 				CreateBonus(downEnemy.transform.position, downEnemy.transform.rotation);
@@ -27,9 +27,8 @@ namespace Gameplay.Bonuses
 
 		private void CreateBonus(Vector3 startPosition, Quaternion rotation)
 		{
-			System.Random randomizer = new System.Random();
-
-			int randomBonusIndex = randomizer.Next(_bonuses.Count);
+			int randomBonusIndex = _randomizer.Next(_bonuses.Count);
+			Debug.Log(randomBonusIndex);
 			PooledObject pooledObject = _bonuses[randomBonusIndex].GetComponent<PooledObject>();
 
 			if (pooledObject != null)

@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CS0649
 
 using Gameplay.Helpers;
-using Gameplay.Spaceships.CustomSpaceships;
 using UnityEngine;
 
 namespace Gameplay.Bonuses.CustomBonuses
@@ -11,9 +10,9 @@ namespace Gameplay.Bonuses.CustomBonuses
 		[SerializeField]
 		private float _healingPower;
 
-		public override void ApplyBonus(PlayerSpaceship playerSpaceship)
+		public override void ApplyBonus(IBonusRecipient recipient)
 		{
-			playerSpaceship.Healing(_healingPower);
+			recipient.Healing(_healingPower);
 			Observer.Instance().ObectOutdated.Invoke(gameObject);
 		}
 	}
