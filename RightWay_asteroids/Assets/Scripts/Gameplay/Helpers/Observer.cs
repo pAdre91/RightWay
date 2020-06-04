@@ -21,6 +21,7 @@ namespace Gameplay.Helpers
 		public Event<float> DownEnemyWithReward;
 		public Event<float> PlayerDeadWithScore;
 		public Event<GameObject> ObectOutdated;
+		public Event<GameObject> EnemyDown;
 		public UnityEvent PlayerDead;
 		public UnityEvent RestartLevel;
 
@@ -34,6 +35,7 @@ namespace Gameplay.Helpers
 			DownEnemyWithReward = new Event<float>();
 			PlayerDeadWithScore = new Event<float>();
 			ObectOutdated = new Event<GameObject>();
+			EnemyDown = new Event<GameObject>();
 			PlayerDead = new UnityEvent();
 			RestartLevel = new UnityEvent();
 		}

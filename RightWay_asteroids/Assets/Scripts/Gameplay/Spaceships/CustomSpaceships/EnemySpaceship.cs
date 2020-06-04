@@ -30,6 +30,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 			{
 				Observer.Instance().DownEnemyWithReward.Invoke(_enemyData.Reward);
 				Observer.Instance().ObectOutdated.Invoke(gameObject);
+				Observer.Instance().EnemyDown.Invoke(gameObject);
 			}
 		}
 
