@@ -13,6 +13,8 @@ namespace Gameplay.Bonuses
 		[SerializeField]
 		List<GameObject> _bonuses;
 
+		private Observer _observer = Observer.Instance();
+
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{
 			System.Random randomizer = new System.Random();
@@ -41,12 +43,12 @@ namespace Gameplay.Bonuses
 
 		private void Subscribe()
 		{
-			Observer.Instance().EnemyDown.AddListener(CreateBonusWithChance);
+			_observer.EnemyDown.AddListener(CreateBonusWithChance);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().EnemyDown.RemoveListener(CreateBonusWithChance);
+			_observer.EnemyDown.RemoveListener(CreateBonusWithChance);
 		}
 
 		private void Start()

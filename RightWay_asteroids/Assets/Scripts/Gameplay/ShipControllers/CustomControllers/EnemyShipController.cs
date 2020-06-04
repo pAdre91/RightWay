@@ -13,6 +13,7 @@ namespace Gameplay.ShipControllers.CustomControllers
 		[SerializeField]
 		private Vector2 _fireDelay;
 
+		private Observer _observer = Observer.Instance();
 		private bool _fire = true;
 
 		protected override void ProcessHandling(MovementSystem movementSystem)
@@ -44,17 +45,17 @@ namespace Gameplay.ShipControllers.CustomControllers
 
 		private void DestroyYourself()
 		{
-			Observer.Instance().ObectOutdated.Invoke(gameObject);
+			_observer.ObectOutdated.Invoke(gameObject);
 		}
 
 		private void Subscribe()
 		{
-			Observer.Instance().PlayerDead.AddListener(DestroyYourself);
+			_observer.PlayerDead.AddListener(DestroyYourself);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().PlayerDead.RemoveListener(DestroyYourself);
+			_observer.PlayerDead.RemoveListener(DestroyYourself);
 		}
 
 		private void OnDestroy()

@@ -15,6 +15,8 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		[SerializeField]
 		private float _reward;
 
+		private Observer _observer = Observer.Instance();
+
 		private new void Start()
 		{
 			base.Start();
@@ -28,9 +30,9 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 			if (IsShipDead())
 			{
-				Observer.Instance().DownEnemyWithReward.Invoke(_enemyData.Reward);
-				Observer.Instance().ObectOutdated.Invoke(gameObject);
-				Observer.Instance().EnemyDown.Invoke(gameObject);
+				_observer.DownEnemyWithReward.Invoke(_enemyData.Reward);
+				_observer.ObectOutdated.Invoke(gameObject);
+				_observer.EnemyDown.Invoke(gameObject);
 			}
 		}
 

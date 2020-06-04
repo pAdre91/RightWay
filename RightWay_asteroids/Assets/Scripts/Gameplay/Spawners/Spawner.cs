@@ -23,6 +23,7 @@ namespace Gameplay.Spawners
 		[SerializeField]
 		private bool _autoStart = true;
 
+		private Observer _observer = Observer.Instance();
 
 		private void Start()
 		{
@@ -75,14 +76,14 @@ namespace Gameplay.Spawners
 
 		private void Subscribe()
 		{
-			Observer.Instance().PlayerDead.AddListener(StopSpawn);
-			Observer.Instance().RestartLevel.AddListener(StartSpawn);
+			_observer.PlayerDead.AddListener(StopSpawn);
+			_observer.RestartLevel.AddListener(StartSpawn);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().PlayerDead.RemoveListener(StopSpawn);
-			Observer.Instance().RestartLevel.RemoveListener(StartSpawn);
+			_observer.PlayerDead.RemoveListener(StopSpawn);
+			_observer.RestartLevel.RemoveListener(StartSpawn);
 		}
 	}
 }

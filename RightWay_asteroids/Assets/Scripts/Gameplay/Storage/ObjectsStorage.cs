@@ -17,6 +17,7 @@ namespace Gameplay.Storage
 
 		private Dictionary<string, GameObjectPool> _pools = new Dictionary<string, GameObjectPool>();
 		private List<string> _poolsKey = new List<string>();
+		private Observer _observer = Observer.Instance();
 
 		public static ObjectsStorage Instance { get; private set; }
 
@@ -74,12 +75,12 @@ namespace Gameplay.Storage
 
 		private void Subscribe()
 		{
-			Observer.Instance().ObectOutdated.AddListener(ReturnObjectToStorage);
+			_observer.ObectOutdated.AddListener(ReturnObjectToStorage);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().ObectOutdated.RemoveListener(ReturnObjectToStorage);
+			_observer.ObectOutdated.RemoveListener(ReturnObjectToStorage);
 		}
 	}
 }

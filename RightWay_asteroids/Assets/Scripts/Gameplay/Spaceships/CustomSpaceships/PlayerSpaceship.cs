@@ -21,6 +21,7 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		private TextInfoViewer _scoreViewer;
 
 		private bool _isTimerStarted = false;
+		private Observer _observer = Observer.Instance();
 
 		public float CurrentSpeed => _playerData.Speed;
 
@@ -103,21 +104,21 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void DestroyShip()
 		{
-			Observer.Instance().PlayerDeadWithScore.Invoke(_playerData.Score);
-			Observer.Instance().PlayerDead.Invoke();
-			Observer.Instance().ObectOutdated.Invoke(gameObject);
+			_observer.PlayerDeadWithScore.Invoke(_playerData.Score);
+			_observer.PlayerDead.Invoke();
+			_observer.ObectOutdated.Invoke(gameObject);
 		}
 
 		private void Subscribe()
 		{
-			Observer.Instance().RestartLevel.AddListener(Init);
-			Observer.Instance().DownEnemyWithReward.AddListener(RefreshScore);
+			_observer.RestartLevel.AddListener(Init);
+			_observer.DownEnemyWithReward.AddListener(RefreshScore);
 		}
 
 		private void UnSubscribe()
 		{
-			Observer.Instance().RestartLevel.RemoveListener(Init);
-			Observer.Instance().DownEnemyWithReward.RemoveListener(RefreshScore);
+			_observer.RestartLevel.RemoveListener(Init);
+			_observer.DownEnemyWithReward.RemoveListener(RefreshScore);
 		}
 
 		private void OnDestroy()
