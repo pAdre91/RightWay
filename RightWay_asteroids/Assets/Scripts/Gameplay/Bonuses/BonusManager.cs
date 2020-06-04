@@ -13,14 +13,12 @@ namespace Gameplay.Bonuses
 		[SerializeField]
 		List<GameObject> _bonuses;
 
-		private float _chanceCreateBonus = 30;			//Унести в константы
-
 		private void CreateBonusWithChance(GameObject downEnemy)
 		{
 			System.Random randomizer = new System.Random();
 			float chance = randomizer.Next(100);
 
-			if (chance < _chanceCreateBonus )
+			if (chance < Constants.ChanceGetBonus )
 				CreateBonus(downEnemy.transform.position, downEnemy.transform.rotation);
 
 		}

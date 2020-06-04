@@ -20,9 +20,6 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		[SerializeField]
 		private TextInfoViewer _scoreViewer;
 
-		private const float _defaultScore = 0;
-		private const float _defaultSpeed = 1;
-
 		private bool _isTimerStarted = false;
 
 		public float CurrentSpeed => _playerData.Speed;
@@ -58,10 +55,10 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		private void Init()
 		{
 			_playerData.Health = _defaultHealth;
-			_playerData.Speed = _defaultSpeed;
+			_playerData.Speed = Constants.DefaultPlayerSpeed;
 
 			DisplayHealth();
-			RewriteScore(_defaultScore);
+			RewriteScore(Constants.DefaultPlayerScore);
 			DisplayPlayer();
 		}
 
