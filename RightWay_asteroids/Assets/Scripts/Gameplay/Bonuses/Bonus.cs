@@ -15,10 +15,17 @@ namespace Gameplay.Bonuses
 		[SerializeField]
 		private UnitBattleIdentity _battleIdentity;
 
+		private Observer _observer = Observer.Instance();
+
 		public MovementSystem MovementSystem => _movementSystem;
 		public UnitBattleIdentity BattleIdentity => _battleIdentity;
 
 		abstract public void ApplyBonus(IBonusRecipient playerSpaceship);
+
+		protected void Start()
+		{
+			Subscribe();
+		}
 
 		private void Update()
 		{
@@ -34,6 +41,26 @@ namespace Gameplay.Bonuses
 				ApplyBonus(playerSpaceship);
 				Observer.Instance().ObectOutdated.Invoke(gameObject);
 			}
+		}
+
+		private void OnDestroy()
+		{
+			UnSubscribe();
+		}
+
+		private void Subscribe()
+		{
+			_observer.PlayerDead.AddListener(DestroyBonus);
+		}
+
+		private void UnSubscribe()
+		{
+			_observer.PlayerDead.RemoveListener(DestroyBonus);
+		}
+
+		private void DestroyBonus()
+		{
+			_observer.ObectOutdated.Invoke(gameObject);
 		}
 	}
 }
