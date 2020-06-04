@@ -21,6 +21,11 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private const float _defaultScore = 0;
 
+		public void Healing(float heal)
+		{
+			_playerData.Health += heal;
+			DisplayHealth();
+		}
 		private new void Start()
 		{
 			base.Start();

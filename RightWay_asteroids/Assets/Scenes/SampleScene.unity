@@ -1188,6 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2147392310}
   - component: {fileID: 2147392311}
+  - component: {fileID: 2147392312}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1228,7 +1229,24 @@ MonoBehaviour:
   - {fileID: 6910651213156479279, guid: db160e65d2bc1c043828d51dfbc352da, type: 3}
   - {fileID: 3036181180036281327, guid: 8d012d111b0c45c4192b98df5e6dc62b, type: 3}
   - {fileID: 996761823093915793, guid: 991ce3001687732409aca2cb6934b6e1, type: 3}
+  - {fileID: 6571397632401635299, guid: 06a2058157bd3c54eb9682a86dfee7c9, type: 3}
+  - {fileID: 8174760809994394676, guid: b62ddc968d6922d4ea841888c66d8e80, type: 3}
   _defaultPoolsSize: 10
+--- !u!114 &2147392312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147392309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ea0dc02845ee74e854cea51558b4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bonuses:
+  - {fileID: 6571397632401635299, guid: 06a2058157bd3c54eb9682a86dfee7c9, type: 3}
+  - {fileID: 8174760809994394676, guid: b62ddc968d6922d4ea841888c66d8e80, type: 3}
 --- !u!1001 &6910651213141950738
 PrefabInstance:
   m_ObjectHideFlags: 0
