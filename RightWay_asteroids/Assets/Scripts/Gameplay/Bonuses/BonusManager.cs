@@ -28,7 +28,6 @@ namespace Gameplay.Bonuses
 		private void CreateBonus(Vector3 startPosition, Quaternion rotation)
 		{
 			int randomBonusIndex = _randomizer.Next(_bonuses.Count);
-			Debug.Log(randomBonusIndex);
 			PooledObject pooledObject = _bonuses[randomBonusIndex].GetComponent<PooledObject>();
 
 			if (pooledObject != null)

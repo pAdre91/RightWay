@@ -4,9 +4,11 @@ using Gameplay.GUI;
 using Gameplay.ShipsData.CustomData;
 using Gameplay.Weapons;
 using Gameplay.Helpers;
+using Gameplay.Bonuses;
+using Gameplay.Storage;
+
 using UnityEngine;
 using System.Collections;
-using Gameplay.Bonuses;
 
 namespace Gameplay.Spaceships.CustomSpaceships
 {
@@ -15,14 +17,12 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		[SerializeField]
 		private PlayerData _playerData;
 
-		[SerializeField]
 		private TextInfoViewer _healthViewer;
-
-		[SerializeField]
 		private TextInfoViewer _scoreViewer;
 
 		private bool _isTimerStarted = false;
 		private Observer _observer = Observer.Instance();
+		private UIObjectsStorage _objectsStorageUI = UIObjectsStorage.Instance;
 
 		public float CurrentSpeed => _playerData.Speed;
 
@@ -56,6 +56,9 @@ namespace Gameplay.Spaceships.CustomSpaceships
 
 		private void Init()
 		{
+			_healthViewer = _objectsStorageUI.PlayerHealthUI;
+			_scoreViewer = _objectsStorageUI.PlayerScoreUI;
+
 			_playerData.Health = _defaultHealth;
 			_playerData.Speed = Constants.DefaultPlayerSpeed;
 
@@ -107,7 +110,8 @@ namespace Gameplay.Spaceships.CustomSpaceships
 		{
 			_observer.PlayerDeadWithScore.Invoke(_playerData.Score);
 			_observer.PlayerDead.Invoke();
-			_observer.ObectOutdated.Invoke(gameObject);
+			Destroy(gameObject);
+			//_observer.ObectOutdated.Invoke(gameObject);
 		}
 
 		private void Subscribe()
